@@ -1,0 +1,9 @@
+Package: com.andugu.screenchat
+Name: ScreenChat
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: andugu
+Author: andugu
+Section: Tweaks
