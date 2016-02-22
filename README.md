@@ -2,7 +2,7 @@
 
 iOS Tweak for non-jailbroken devices to avoid screenshot detection on Snapchat app
 
-This is a test, not a project for invading the privacy of users. I am not responsible for any use which can give a user
+This is a test, not a project for invading the privacy of users. I am not responsible for any use which can give a user of this.
 
 Requirements
 ============
