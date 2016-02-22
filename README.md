@@ -16,6 +16,7 @@ Requirements
 
 How to install
 ============
+* Uninstall Snapchat from the iOS device.
 * Extract or download an Snapchat decrypted ipa file.
 * Place an symlink in the project folder named `theos` pointing to the theos-jailed folder you downloaded.
 * Edit the `patchapp.sh`, change the first variable with the path to the optool binary you downloaded.
