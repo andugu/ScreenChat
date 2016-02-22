@@ -15,7 +15,7 @@ Requirements
 How to install
 ============
 * Extract or download an Snapchat decrypted ipa file.
-* Place an symlink to the project folder named `theos` pointing to the theos-jailed folder you downloaded.
+* Place an symlink in the project folder named `theos` pointing to the theos-jailed folder you downloaded.
 * Edit the `patchapp.sh`, change the first variable with the path to the optool binary you downloaded.
 * Run `make package`
 * Run `./patchapp.sh info /path/to/your/file.ipa`
