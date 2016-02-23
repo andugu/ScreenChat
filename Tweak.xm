@@ -1,3 +1,7 @@
+/* 
+	You can enable or disable features just writing them as comments.
+*/
+
 #include "fishhook/fishhook.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
