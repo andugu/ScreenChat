@@ -43,6 +43,6 @@ How to install
 * Run `./patchapp.sh info /path/to/your/file.ipa`
 * Take the information from that and use the Apple Member Center to create a matching Provisionin Profile or create an empty Xcode project and use the Provisionin Profile of the project.
 * Save the Provisioning Profile somewhere on your computer.
-* Run `.patchapp.sh patch /path/to/Snapchat.ipa /path/to/your/file.mobileprovision` to inject the tweak into the .ipa
+* Run `./patchapp.sh patch /path/to/Snapchat.ipa /path/to/your/file.mobileprovision` to inject the tweak into the .ipa
 * Install the ipa to the device
 * If Xcode gives you an "unknown error" resign the ipa with iModSign and install it with Xcode, this fixed the problem for me :)
