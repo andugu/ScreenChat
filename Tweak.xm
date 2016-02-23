@@ -21,7 +21,6 @@ int currentSnapSource = 0;
 /* ============
    Overrides
 ============= */
-   
 // Screenshot Blocking
 %hook SCDiscoverEditionViewController
 -(void)userDidTakeScreenshot {
