@@ -67,7 +67,7 @@ int currentSnapSource = 0;
 }
 %end
 
-% hook SCChatViewController
+%hook SCChatViewController
 -(void)tapToSkip:(id)arg1 {
 	@try {
 		if (currentSnap) {
