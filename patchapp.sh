@@ -3,7 +3,7 @@
 #
 # You WILL need to change this
 #
-OPTOOL="/Users/andugu/Developer/optool"
+OPTOOL="./optool"
 
 #
 # You shouldn't need to change these unless you have multiple Dev certs
