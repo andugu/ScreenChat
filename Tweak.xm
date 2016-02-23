@@ -67,20 +67,6 @@ int currentSnapSource = 0;
 }
 %end
 
-%hook SCChatViewController
--(void)tapToSkip:(id)arg1 {
-	@try {
-		if (currentSnap) {
-			[[%c(Manager) shared] markSnapAsViewed:currentSnap];
-			currentSnap = nil;
-		}
-	}
-	@catch(NSException *){}
-
-	%orig;
-}
-%end
-
 // Hides the timer from the display
 %hook SCMediaView
 -(id) snapTimer {
