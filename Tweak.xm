@@ -1,7 +1,3 @@
-/* 
-	You can enable or disable features just writing them as comments.
-*/
-
 #include "fishhook/fishhook.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -25,6 +21,7 @@ int currentSnapSource = 0;
 /* ============
    Overrides
 ============= */
+   
 // Screenshot Blocking
 %hook SCDiscoverEditionViewController
 -(void)userDidTakeScreenshot {
@@ -57,6 +54,20 @@ int currentSnapSource = 0;
 
 // Handles tap to progress
 %hook SCFeedViewController
+-(void)tapToSkip:(id)arg1 {
+	@try {
+		if (currentSnap) {
+			[[%c(Manager) shared] markSnapAsViewed:currentSnap];
+			currentSnap = nil;
+		}
+	}
+	@catch(NSException *){}
+
+	%orig;
+}
+%end
+
+% hook SCChatViewController
 -(void)tapToSkip:(id)arg1 {
 	@try {
 		if (currentSnap) {
