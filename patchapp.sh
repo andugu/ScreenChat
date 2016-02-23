@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# You WILL need to change this
+# You shouldn't need to change this
 #
 OPTOOL="./optool"
 
