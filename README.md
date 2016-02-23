@@ -31,7 +31,6 @@ How to install
 * Decrypted ipa file of the app
 * [optool](https://github.com/alexzielenski/optool/releases)
 * [theos-jailed](https://codeload.github.com/BishopFox/theos-jailed/zip/master)
-* iModSign?
 
 ###Steps
 
