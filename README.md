@@ -15,7 +15,7 @@ This is a test, not a project for invading the privacy of users. I am not respon
 #####Thanks to
 * [andugu](https://github.com/andugu) (me) for the main source code.
 * [dado3212](https://github.com/dado3212) for the extra features he added, and the implementation of a new signing method.
-* Giovanni Di Grezia, whose [code](http://www.xgiovio.com/blog-photos-videos-other/blog/resign-your-ios-ipa-frameworks-and-plugins-included/) served as the basis for the (upcoming) patchapp.sh revisions.
+* Giovanni Di Grezia, whose [code](http://www.xgiovio.com/blog-photos-videos-other/blog/resign-your-ios-ipa-frameworks-and-plugins-included/) served as the basis for the patchapp.sh revisions.
 * [alexzielenski](https://github.com/alexzielenski) for optool.
 * [BishopFox](https://github.com/BishopFox) for theos-jailed.
 
