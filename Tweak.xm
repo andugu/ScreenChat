@@ -156,6 +156,7 @@ UIButton *saveSnapButton = nil;
 
 -(void)startTimer:(id)snap source:(int)source {
 	currentSnap = snap;
+
 	%orig;
 }
 %end
