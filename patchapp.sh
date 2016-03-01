@@ -127,7 +127,54 @@ function ipa_info {
 7. In the top bar, where it currently says "iPhone ....", set the device to your current phone (make sure it's plugged in).
 8. Under "Identity", change "Team" to whatever developer account is yours (it can be a free one).
 9. Click "Fix Issue", under where it says "No matching provisioning profiles found".
+INFO
 
+	codesign -d --entitlements - "$APPDIR/$APP_BINARY" > entitlements.xml 2>/dev/null
+	if [ "$?" != "0" ]; then
+		echo "Failed to get entitlements for $APPDIR/$APP_BINARY"
+		exit 1
+	fi
+
+	for ent in `grep -a '<key>' entitlements.xml`; do
+		entitlement=`echo $ent | cut -f2 -d\> | cut -f1 -d\<`
+		case $entitlement in
+			com.apple.developer.networking.vpn.api)
+				echo ">>> VPN Configuration & Control"
+				;;
+			com.apple.developer.in-app-payments)
+				echo ">>> Apple Pay (requires extra configuration)"
+				;;
+			com.apple.external-accessory.wireless-configuration)
+				echo ">>> Wireless Accessory Configuration"
+				;;
+			com.apple.developer.homekit)
+				echo ">>> HomeKit"
+				;;
+			com.apple.security.application-groups)
+				echo ">>> App Groups:"
+				for group in `dd if=entitlements.xml bs=1 skip=8 2>/dev/null|sed -ne '/application-groups/,/<\/array/p'|grep '<string>' 2>/dev/null`; do #|tail -n1` #|cut -f2 -d\>|cut -f1 -d\<`
+					GROUP_ID=`echo $group | cut -f2 -d\>|cut -f1 -d\<`$SUFFIX
+					echo "    $GROUP_ID"
+				done				
+				;;
+			com.apple.developer.associated-domains)
+				echo ">>> Associated Domains"
+				;;
+			com.apple.developer.healthkit)
+				echo ">>> HealthKit"
+				;;
+			inter-app-audio)
+				echo ">>> Inter-App Audio"
+				;;
+			com.apple.developer.ubiquity*)
+				echo ">>> Passbook"
+				echo ">>> iCloud (requires extra configuration)"
+				echo ">>> Data Protection"
+				;;
+		esac
+	done | tee entitlements.txt
+
+	cat <<INFO2
 ==================================================================
 = Installing the provisioning profile on your device using XCode =
 ==================================================================
@@ -156,7 +203,7 @@ Run the following command:
     $0 patch $IPA $BUNDLE_ID
 Install 'provision.mobileprovision' onto your device (steps above).
 Install the patched app onto your device (steps above). 
-INFO
+INFO2
 }
 
 #
@@ -297,4 +344,3 @@ esac
 	
 # success!
 exit 0
-
