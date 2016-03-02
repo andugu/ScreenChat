@@ -160,3 +160,20 @@ UIButton *saveSnapButton = nil;
 	%orig;
 }
 %end
+
+// Breaks the daily replay limit
+%hook User
+
+/*-(void) updateCanReplaySnapsTimeWithCurrentDate:(id)rDate replayedDate:(id)cDate {
+	return %orig([NSDate dateWithTimeIntervalSinceNow: -(60.0f*60.0f*25.0f)], cDate);
+}*/
+	- (_Bool)hasFreeReplaySnap {
+		return 1;
+	}
+%end
+
+%hook SCSnapPlayController
+- (_Bool)canReplaySnap {
+	return 1;
+}
+%end
