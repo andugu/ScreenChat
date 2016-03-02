@@ -40,10 +40,7 @@ How to install
 * Run `./patchapp-2.sh info /path/to/your/file.ipa`
 * Take the information from that and use XCode to create a Provisioning Profile
 * Here we have two different methods, choose the one that works for you!
-
 1) Run `./patchapp-2.sh patch /path/to/Snapchat.ipa BUNDLE_ID` to inject the tweak into the .ipa (get the BUNDLE_ID from the info command)
-
 2) Or run `./patchapp-1.sh patch /path/to/Snapchat.ipa /path/to/.mobileprovision`
-
 * If you used the first method install the .mobileprovision to the device, and if you used the second one you should resign the ipa file with iModSign.
 * Install the ipa to the device
