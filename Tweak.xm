@@ -107,6 +107,40 @@ UIButton *saveSnapButton = nil;
 }
 %end
 
+/*%hook UIImageView
+-(void) setImage:(id)image {
+	%orig;
+
+	if ([[self.superview performSelector:@selector(className)] isEqualToString:@"SCMediaView"] && !CGSizeEqualToSize(((UIImage *)image).size, CGSizeMake(0,0)) && saveSnapButton != nil && ![[[saveSnapButton actionsForTarget:self.superview forControlEvent:UIControlEventTouchUpInside] objectAtIndex:0] isEqualToString:@"saveImage:"]) {
+		NSLog(@"Converting to saveImage!");
+		// Remove the action.
+		[saveSnapButton removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+		// Add the right action.
+		[saveSnapButton addTarget:self.superview action:@selector(saveImage:) forControlEvents:UIControlEventTouchUpInside];
+	}
+}
+%end
+
+%hook AVPlayer
+-(void) play {
+	if (saveSnapButton != nil && ![[[saveSnapButton actionsForTarget:self forControlEvent:UIControlEventTouchUpInside] objectAtIndex:0] isEqualToString:@"saveVideo:"]) {
+		NSLog(@"Converting to saveVideo!");
+		// Remove the action.
+		[saveSnapButton removeTarget:nil action:NULL forControlEvents:UIControlEventTouchUpInside];
+		// Add the right action.
+		[saveSnapButton addTarget:self action:@selector(saveVideo:) forControlEvents:UIControlEventTouchUpInside];
+	}
+
+	%orig;
+}
+
+%new
+-(void) saveVideo:(id)sender {
+	if(UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([[[[self performSelector:@selector(currentItem)] performSelector:@selector(asset)] performSelector:@selector(URL)] performSelector:@selector(path)]))
+		UISaveVideoAtPathToSavedPhotosAlbum([[[[self performSelector:@selector(currentItem)] performSelector:@selector(asset)] performSelector:@selector(URL)] performSelector:@selector(path)], nil, nil, nil);
+}
+%end*/
+
 // Removes the caption text limit
 %hook SCCaptionDefaultTextView
 -(CGFloat) maxTextWidth {
@@ -130,7 +164,10 @@ UIButton *saveSnapButton = nil;
 // Breaks the daily replay limit
 %hook User
 
-- (_Bool)hasFreeReplaySnap {
+/*-(void) updateCanReplaySnapsTimeWithCurrentDate:(id)rDate replayedDate:(id)cDate {
+	return %orig([NSDate dateWithTimeIntervalSinceNow: -(60.0f*60.0f*25.0f)], cDate);
+}*/
+	- (_Bool)hasFreeReplaySnap {
 		return 1;
 	}
 %end
