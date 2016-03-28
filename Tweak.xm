@@ -107,7 +107,7 @@ UIButton *saveSnapButton = nil;
 }
 %end
 
-/*%hook UIImageView
+%hook UIImageView
 -(void) setImage:(id)image {
 	%orig;
 
@@ -139,7 +139,7 @@ UIButton *saveSnapButton = nil;
 	if(UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([[[[self performSelector:@selector(currentItem)] performSelector:@selector(asset)] performSelector:@selector(URL)] performSelector:@selector(path)]))
 		UISaveVideoAtPathToSavedPhotosAlbum([[[[self performSelector:@selector(currentItem)] performSelector:@selector(asset)] performSelector:@selector(URL)] performSelector:@selector(path)], nil, nil, nil);
 }
-%end*/
+%end
 
 // Removes the caption text limit
 %hook SCCaptionDefaultTextView
@@ -163,10 +163,6 @@ UIButton *saveSnapButton = nil;
 
 // Breaks the daily replay limit
 %hook User
-
-/*-(void) updateCanReplaySnapsTimeWithCurrentDate:(id)rDate replayedDate:(id)cDate {
-	return %orig([NSDate dateWithTimeIntervalSinceNow: -(60.0f*60.0f*25.0f)], cDate);
-}*/
 	- (_Bool)hasFreeReplaySnap {
 		return 1;
 	}
