@@ -38,6 +38,14 @@ UIButton *saveSnapButton = nil;
 }
 %end
 
+//Blocks screenshot detection on new chat interface introduced on 9.27.0
+
+%hook SCChatViewControllerV2
+-(void)userDidTakeScreenshot {
+	return;
+}
+%end
+
 %hook SCViewingStoryViewController
 -(void)userDidTakeScreenshot {
 	return;
