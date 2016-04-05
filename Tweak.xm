@@ -152,7 +152,7 @@ UIButton *saveSnapButton = nil;
 // Removes the caption text limit
 %hook SCCaptionDefaultTextView
 -(CGFloat) maxTextWidth {
-	return DBL_MAX;
+	return FLT_MAX;
 }
 %end
 
