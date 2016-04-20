@@ -151,9 +151,16 @@ UIButton *saveSnapButton = nil;
 
 // Removes the caption text limit
 %hook SCCaptionDefaultTextView
--(CGFloat) maxTextWidth {
-	return FLT_MAX;
+#if defined(__arm__)
+-(int)maxTextWidth {
+    return INT_MAX; // didn't test LLONG_MAX ( but if it worked for you so great )
 }
+#elif defined(__arm64__)
+- (long long)maxTextWidth {
+    return LLONG_MAX;
+}
+#else
+#endif
 %end
 
 // Stops timer from progressing
@@ -161,12 +168,21 @@ UIButton *saveSnapButton = nil;
 -(void)tick:(id)tick {
 	return;
 }
-
+#if defined(__arm__)
 -(void)startTimer:(id)snap source:(int)source {
 	currentSnap = snap;
 
 	%orig;
 }
+#elif defined(__arm64__)
+- (void)startTimer:(id)arg1 source:(long long)arg2 {
+	currentSnap = snap;
+
+	%orig;
+}
+#else
+#endif
+
 %end
 
 // Breaks the daily replay limit
