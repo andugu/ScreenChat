@@ -151,13 +151,51 @@ UIButton *saveSnapButton = nil;
 
 // Removes the caption text limit
 %hook SCCaptionDefaultTextView
+-(void) trimTextViewTextIfNecessary {
+    return;
+}
+
 #if defined(__arm__)
--(int)maxTextWidth {
-    return INT_MAX; // didn't test LLONG_MAX ( but if it worked for you so great )
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if (range.length == 0) {
+        if ([text isEqualToString:@"\n"]) {
+            textView.text = [NSString stringWithFormat:@"%@\n\t",textView.text];
+            return NO;
+        }
+    }
+    return YES;
+}
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    return YES;
+}
+-(int)contentHeight {
+    int orig = _orig(int);
+    return orig*3; // 480 x 3
+}
+-(int)contentWidth {
+    int orig = _orig(int);
+    return orig*3; // 480 x 3
 }
 #elif defined(__arm64__)
-- (long long)maxTextWidth {
-    return LLONG_MAX;
+- (_Bool)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if (range.length == 0) {
+        if ([text isEqualToString:@"\n"]) {
+            textView.text = [NSString stringWithFormat:@"%@\n\t",textView.text];
+            return NO;
+        }
+    }
+    return YES;
+}
+- (_Bool)textViewShouldEndEditing:(UITextView *)textView {
+    return YES;
+}
+-(long long)contentHeight {
+    long long orig = _orig(long long);
+    return orig*3; // 480 x 3
+}
+-(long long)contentWidth {
+    long long orig = _orig(long long);
+    return orig*3; // 480 x 3
 }
 #else
 #endif
