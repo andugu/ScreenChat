@@ -169,11 +169,11 @@ UIButton *saveSnapButton = nil;
     return YES;
 }
 -(int)contentHeight {
-    int orig = _orig(int);
+    int orig = %orig;
     return orig*3; // 480 x 3
 }
 -(int)contentWidth {
-    int orig = _orig(int);
+    int orig = %orig;
     return orig*3; // 480 x 3
 }
 #elif defined(__arm64__)
@@ -190,11 +190,11 @@ UIButton *saveSnapButton = nil;
     return YES;
 }
 -(long long)contentHeight {
-    long long orig = _orig(long long);
+    long long orig = %orig;
     return orig*3; // 480 x 3
 }
 -(long long)contentWidth {
-    long long orig = _orig(long long);
+    long long orig = %orig;
     return orig*3; // 480 x 3
 }
 #else
