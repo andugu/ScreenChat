@@ -10,7 +10,7 @@ During the course of this project, it was found that due to the extensive permis
 malicious code into an application file (`.ipa`), and later convincing the victim to install the malicious package.
 
 While more advanced exploitation techniques can be challenging to achieve, this one proved to be the cheapest, but yet 
-highly effective way to extract private date from an iOS device. Since there are no vulnerabilities involved in the
+highly effective way to extract private data from an iOS device. Since there are no vulnerabilities involved in the
 process, and it's the victim itself the one installing the malicious payload into its device.
 Plus, the demand for modified applications was on the rising.
 
